@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's this? 💖</title>
+    <!-- Importing a clean pixel-style monospace font -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e2f7f1; /* Exact Mint Green from the image */
+            font-family: 'Courier Prime', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Container for the choices matching the image layout */
+        .choice-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+        }
+
+        /* SVG Pixel Art Elements to perfectly replicate the image */
+        .pixel-art {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            color: #55bfa3; /* Matching muted green text color */
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Rounded pixel style button matching the image */
+        .pixel-btn {
+            background-color: white;
+            color: #55bfa3;
+            border: 2.5px solid #55bfa3;
+            padding: 6px 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Courier Prime', monospace;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+            box-shadow: 0 4px 0px rgba(85, 191, 163, 0.2);
+        }
+
+        .pixel-btn:hover {
+            background-color: #55bfa3;
+            color: white;
+        }
+
+        /* Step 2, 3 & 4 Screens */
+        .container {
+            background: white;
+            padding: 40px;
+            border: 3px solid #55bfa3;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #ff5e8d;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 50px; 
+            position: relative;
+        }
+
+        #yes-btn {
+            background-color: #ff5e8d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            order: 2; /* Forces Yes to the right side */
+        }
+
+        #no-btn {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            order: 1; /* Forces No to the left side */
+            position: relative; 
+        }
+
+        /* New Password Input Box Design */
+        .pass-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #55bfa3;
+            border-radius: 8px;
+            font-family: 'Courier Prime', monospace;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .hidden { display: none !important; }
+
+        #message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+
+        .music-box {
+            margin-top: 25px;
+            border: 2px solid #55bfa3;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            height: 80px;
+        }
+
+        /* Falling Pixel Hearts */
+        .pixel-heart {
+            position: absolute;
+            font-size: 24px;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: Image Style Menu Selection -->
+    <div class="choice-wrapper" id="menu-screen">
+        <div class="card">
+            <svg class="pixel-art" viewBox="0 0 16 16" fill="none" xmlns="http://w3.org">
+                <rect x="2" y="4" width="12" height="9" fill="#ffb3c6"/>
+                <path d="M2 4L8 9L14 4" stroke="#ff5e8d" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="7" y="2" width="2" height="2" fill="#ff5e8d"/>
+            </svg>
+            <div class="label">What's this?</div>
+            <button class="pixel-btn" onclick="startChallenge('envelope')">Open</button>
+        </div>
+
+        <div class="card">
+            <svg class="pixel-art" viewBox="0 0 16 16" fill="none" xmlns="http://w3.org">
+                <path d="M4 3H12L15 6L8 14L1 6L4 3Z" fill="#ff5e8d"/>
+                <path d="M5 4H11L13 6H3L5 4Z" fill="#ff85a2"/>
+                <rect x="7" y="4" width="2" height="7" fill="#fff" opacity="0.4"/>
+            </svg>
+            <div class="label">Open it :)</div>
+            <button class="pixel-btn" onclick="startChallenge('diamond')">Open</button>
+        </div>
+    </div>
+
+    <!-- Step 2: The Runaway Question Screen -->
+    <div class="container hidden" id="question-screen">
+        <h1>Do you really want to open it? 🌹</h1>
+        <div class="btn-container">
+            <button id="no-btn" onmouseover="runAway()" onclick="runAway()">No</button>
+            <button id="yes-btn" onclick="showPasswordScreen()">Yes</button>
+        </div>
+    </div>
+
+    <!-- Step 3: Mobile-Safe On-Screen Password Screen -->
+    <div class="container hidden" id="password-screen">
+        <h1>Enter Secret Password 🔐</h1>
+        <input type="password" id="password-field" class="pass-input" placeholder="Type password here...">
+        <br>
+        <button id="yes-btn" onclick="checkPassword()">Unlock</button>
+        <div id="error" class="error-msg hidden">Wrong password! Try again. 😉</div>
+    </div>
+
+    <!-- Step 4: The Secret Letter Screen -->
+    <div class="container hidden" id="letter-screen">
+        <h1 id="letter-title">For Your Eyes Only ❤️</h1>
+        <div id="message"></div>
+        <div class="music-box">
+            <iframe width="100%" height="80" src="https://youtube.com" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "love123"; 
+        let chosenOption = ""; 
+
+        const contentData = {
+            envelope: {
+                title: "A Hidden Love Letter 💌",
+                note: "You opened the letter! I wanted to write this down because words out loud sometimes fail to show how much you mean to me. You make every ordinary day feel intentional and safe. Thank you for being my favorite person."
+            },
+            diamond: {
+                title: "A Rare Treasure Found 💎",
+                note: "You picked the diamond! It suits you perfectly because you are completely one of a kind. You bring so much energy, brilliance, and happiness into my life. I hit the absolute jackpot when I found you."
+            }
+        };
+
+        function startChallenge(option) {
+            chosenOption = option; 
+            document.getElementById('menu-screen').classList.add('hidden');
+            document.getElementById('question-screen').classList.remove('hidden');
+        }
+
+        function runAway() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.style.position = 'fixed';
+            
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function showPasswordScreen() {
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('password-screen').classList.remove('hidden');
+        }
+
+        function checkPassword() {
+            const entered = document.getElementById('password-field').value;
+            if (entered === correctPassword) {
+                revealLetter();
+            } else {
+                document.getElementById('error').classList.remove('hidden');
+            }
+        }
+
+        function revealLetter() {
+            document.getElementById('password-screen').classList.add('hidden');
+            document.getElementById('letter-screen').classList.remove('hidden');
+            
+            const selection = contentData[chosenOption];
+            document.getElementById('letter-title').innerText = selection.title;
+
+            let i = 0;
+            function typeWriter() {
+                if (i < selection.note.length) {
+                    document.getElementById('message').innerHTML += selection.note.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            typeWriter();
+
+setInterval(createPixelHeart, 400);
+}
+function createPixelHeart() {
+const heart = document.createElement('div');
+heart.classList.add('pixel-heart');
+heart.style.color = '#ff5e8d';
+heart.innerHTML = '👾';
+heart.style.left = Math.random() * 100 + 'vw';
+heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+heart.style.opacity = Math.random() * 0.5 + 0.5;
+document.body.appendChild(heart);
+setTimeout(() => { heart.remove(); }, 5000);
+}
